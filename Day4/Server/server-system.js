@@ -1,6 +1,6 @@
 var http = require("http");
 var fs = require("fs");
-var port = 3004;
+var port = 3002;
 
 var server = http
   .createServer((request, response) => {
@@ -26,6 +26,11 @@ var server = http
       const pdf = fs.readFileSync("content.pdf");
 
       response.end(pdf);
+    }
+    if (request.url === "/hello") {
+      response.writeHead(200, { "Content-Type": "text/html" });
+
+      response.write("<h1>Hello HTML</h1>");
     }
     response.end();
   })
