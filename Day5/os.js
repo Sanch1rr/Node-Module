@@ -21,8 +21,15 @@ let obj = {
 };
 
 let json = JSON.stringify(obj);
+// http
+//   .createServer(function (request, response) {
+//     response.writeHead(200, json);
+
+//     response.end(json);
+//   })
+//   .listen(3000);
 http
-  .createServer(function (request, response) {
+  .createServer((request, response) => {
     response.writeHead(200, json);
 
     response.end(json);

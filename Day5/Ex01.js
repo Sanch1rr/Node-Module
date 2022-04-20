@@ -1,23 +1,12 @@
-var http = require("https");
+var http = require("http");
 var fs = require("fs");
+var port = 3000;
+
 http
-  .get("https://dev-api.mstars.mn/api/foods", (response) => {
-    let data = [];
-    response.on("data", (chunk) => {
-      data.push(chunk);
-    });
-    response.on("end", () => {
-      const foods = JSON.parse(Buffer.concat(data).toString());
-      console.log(foods);
-      fs.appendFile("foods.json", JSON.stringify(foods), (err) => {
-        if (err) {
-          throw err;
-        } else {
-          console.log("appended succesfully");
-        }
-      });
-    });
+  .createServer((request, response) => {
+    response.writeHead(200, { "Content-Type": "image/jpg" });
+    const jpg = fs.readFileSync("dog.jpg");
+
+    response.end(jpg);
   })
-  .on("error", (err) => {
-    console.log("Error: " + err.message);
-  });
+  .listen(port);
