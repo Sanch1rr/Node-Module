@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const bodyParser = require("body-parser");
+const { body, validationResult } = require("express-validator");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
